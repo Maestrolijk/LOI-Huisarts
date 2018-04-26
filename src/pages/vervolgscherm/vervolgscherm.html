@@ -1,0 +1,38 @@
+<!--
+  Generated template for the VervolgschermPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>SPOED - vervolgscherm</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>(Vermoedelijk) letsel:</ion-label>
+    <ion-select [(ngModel)]="letsel">
+      <ion-option value="Maak een keuze">Maak een keuze...</ion-option>
+      <ion-option value="Botbreuk of ernstige verstuiking/kneuzing">Botbreuk of ernstige verstuiking/kneuzing</ion-option>
+      <ion-option value="Bloeding">Bloeding</ion-option>
+      <ion-option value="Ernstige val">Ernstige val</ion-option>
+      <ion-option value="Hoofdletsel">Hoofdletsel</ion-option>
+      <ion-option value="Verbranding">Verbranding</ion-option>
+      <ion-option value="Overdosis of vergiftiging">Overdosis of vergiftiging</ion-option>
+      <ion-option value="Bewusteloosheid">Bewusteloosheid</ion-option>
+      <ion-option value="Hersenletsel">Hersenletsel</ion-option>
+      <ion-option value="Onbekend en niet te achterhalen">Onbekend en niet te achterhalen</ion-option>
+    </ion-select>
+  </ion-item>
+  <button ion-button block text-wrap (click)="huisartsenpost()">Het slachtoffer is mobiel en kan vervoer regelen</button>
+  <button ion-button block text-wrap (click)="locatieslachtoffer()">Het slachtoffer is niet mobiel en/of kan geen vervoer regelen</button>
+  <ion-item>
+      <ion-label text-wrap>Het slachtoffer heeft alcohol en/of drugs gebruikt</ion-label>
+      <ion-toggle checked="false"></ion-toggle>
+  </ion-item>
+</ion-content>

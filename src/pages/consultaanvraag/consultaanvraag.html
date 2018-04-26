@@ -1,0 +1,34 @@
+<!--
+  Generated template for the ConsultaanvraagPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Consultaanvraag
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-calendar [(ngModel)]="date"
+              (onChange)="onChange($event)"
+              [type]="type"
+              [format]="'YYYY-MM-DD'">
+</ion-calendar>
+<p text-center class="nieuweafspraak">Nieuwe afspraak:</p>
+<ion-item>
+  <ion-label>Consult</ion-label>
+  <ion-select [(ngModel)]="consult" interface="popover">
+    <ion-option value="Kort">Kort</ion-option>
+    <ion-option value="Lang">Lang</ion-option>
+  </ion-select>
+</ion-item>
+<ion-item>
+  <ion-label>Klacht:</ion-label>
+  <ion-input type="text"></ion-input>
+</ion-item>
+<button ion-button block>Inplannen</button>
+</ion-content>

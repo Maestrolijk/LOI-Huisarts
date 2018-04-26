@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Hoofdpagina
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col width-50>
+          <button ion-button small block (click)="ChatArts()">Chat met de arts</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col width-50>
+            <button ion-button small block (click)="ConsultAanvraag()">Consultaanvraag</button>
+        </ion-col>
+      </ion-row>
+    <ion-row>
+        <ion-col width-50>
+            <button ion-button small block (click)="Doorverwijzing()">Doorverwijzing</button>
+        </ion-col>
+      </ion-row>
+    <ion-row>
+        <ion-col width-50>
+            <button ion-button small block (click)="Bloedonderzoek()">Bloedonderzoek</button>
+        </ion-col>
+      </ion-row>
+    <ion-row>
+        <ion-col width-50>
+            <button ion-button small block (click)="Berichten()">Berichten</button>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col width-50>
+            <button ion-button small block (click)="EPD()">EPD</button>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col width-50>
+            <button ion-button small block (click)="Medicijnen()">Mijn medicijnen</button>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col width-50>
+            <button ion-button small block color="danger" (click)="Spoed()">Spoed!!!</button>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

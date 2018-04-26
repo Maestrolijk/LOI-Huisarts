@@ -1,0 +1,47 @@
+<!--
+  Generated template for the DoorverwijzingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Doorverwijzing</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div padding>
+    <ion-item>
+      <ion-label>Klacht:</ion-label>
+        <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>      
+        <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()" placeholder="Gewenste specialist" autocomplete="on" autocorrect="on"></ion-searchbar>      
+          <ion-list radio-group>
+          <ion-item *ngFor="let item of items">
+              <ion-label>{{item.title}}</ion-label>
+              <ion-radio [value]="item.title"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-label text-wrap>Bent u al eerder voor deze klacht behandeld?</ion-label>
+            <ion-toggle checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item>
+              <ion-label text-wrap>Bent u al eerder bij deze specialist geweest?</ion-label>
+              <ion-toggle checked="false"></ion-toggle>
+          </ion-item>
+          <ion-item>
+              <ion-label text-wrap>Wilt u vooraf contact met de arts hierover?</ion-label>
+              <ion-toggle checked="false"></ion-toggle>
+          </ion-item>
+          <button ion-button small block>Submit</button>
+      </ion-list>
+  </div>
+</ion-content>
