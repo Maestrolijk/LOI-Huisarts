@@ -16,6 +16,7 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 export class EpdPage {
 
+  // set variables
   countries: string[];
   errorMessage: string;
 
@@ -26,6 +27,7 @@ export class EpdPage {
     this.getCountries();
   }
 
+  // load the countries
   getCountries() {
     this.rest.getCountries()
        .subscribe(

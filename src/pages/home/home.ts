@@ -21,43 +21,37 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
     
   }
-  Spoed(){
-  this.navCtrl.push(SpoedPage);
 
+  // open the different pages
+  Spoed() {
+  this.navCtrl.push(SpoedPage);
   }
 
-  ChatArts(){
+  ChatArts() {
     this.navCtrl.push(ChatartsPage);
-  
-    }
+  }
 
-  ConsultAanvraag(){
+  ConsultAanvraag() {
     this.navCtrl.push(ConsultaanvraagPage);
-  
-    }
+  }
 
-  Doorverwijzing(){
+  Doorverwijzing() {
     this.navCtrl.push(DoorverwijzingPage);
-  
-    }
+  }
 
-  Bloedonderzoek(){
+  Bloedonderzoek() {
     this.navCtrl.push(BloedonderzoekPage);
-  
-    }
+  }
 
-  Berichten(){
+  Berichten() {
     this.navCtrl.push(BerichtenPage);
-  
-    }
+  }
 
-  Medicijnen(){
+  Medicijnen() {
     this.navCtrl.push(MedicijnenPage);
-  
-    }
+  }
 
-  EPD(){
+  EPD() {
     this.navCtrl.push(EpdPage);
-  
-    }
+  }
 }

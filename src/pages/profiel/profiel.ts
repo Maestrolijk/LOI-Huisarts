@@ -19,6 +19,7 @@ import { Storage } from '@ionic/storage';
 })
 export class ProfielPage {
 
+  // set variables
   myphoto: any;
   myphotostorage: any;
   username: string;
@@ -34,6 +35,7 @@ export class ProfielPage {
     });
   }
   
+  // load the different items from the local storage
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfielPage');
     this.loadDataPhoto();
@@ -42,12 +44,14 @@ export class ProfielPage {
     this.loadDataUsercode();
   }
 
+  // take the picture with front camera and allow cropping in the right size
   takePhoto() {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
+      cameraDirection: 1,
       allowEdit:true,
       targetWidth: 100,
       targetHeight: 100
@@ -57,12 +61,14 @@ export class ProfielPage {
     // imageData is either a base64 encoded string or a file URI
     // If it's base64:
     this.myphoto = 'data:image/jpeg;base64,' + imageData;
+    // write the picture to the local storage
     this.storage.set(this.myphotostorage, this.myphoto);
    }, (err) => {
     // Handle error
    });
   }
 
+  // write the data to the local storage
   saveData() {
     this.storage.set(this.keyusername, this.username);
     this.storage.set(this.keymailaddress, this.mailaddress);
@@ -70,6 +76,8 @@ export class ProfielPage {
     this.dataSaved();
   }
 
+  // load the picture from the local storage
+  // if no picture is found use the standard avatar
   loadDataPhoto() {
     this.storage.get(this.myphotostorage).then(val => {
       if(val != null) {
@@ -82,28 +90,28 @@ export class ProfielPage {
       })
   }
 
+  // load the username from the local storage
   loadDataUsername() {
     this.storage.get(this.keyusername).then((val) => {
       this.username = val;
     });
   }
 
+  // load the email from the local storage
   loadDataEmail() {
     this.storage.get(this.keymailaddress).then((val) => {
       this.mailaddress = val;
     });
   }
 
+  // load the logincode from the local storage
   loadDataUsercode() {
     this.storage.get(this.keyusercode).then((val) => {
       this.usercode = val;
     });
   }
 
-  showPicture() {
-    this.myphoto = "assets/imgs/useravatar.png";
-  }
-
+  // alert for saving data to the local storage
   dataSaved() {
     let alert = this.alertCtrl.create({
       title: 'Bedankt!',

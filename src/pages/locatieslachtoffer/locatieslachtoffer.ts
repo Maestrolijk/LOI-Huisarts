@@ -18,7 +18,8 @@ import { MapsAPILoader } from '@agm/core';
 })
 export class LocatieslachtofferPage {
 
-  public latitude: number;
+    // set variables
+    public latitude: number;
     public longitude: number;
     public searchControl: FormControl;
     public zoom: number;
@@ -75,13 +76,14 @@ export class LocatieslachtofferPage {
     });
   }
 
+    // set current position
     private setCurrentPosition() {
-      if ("geolocation" in navigator) {
-          navigator.geolocation.getCurrentPosition((position) => {
-              this.latitude = position.coords.latitude;
-              this.longitude = position.coords.longitude;
-              this.zoom = 14;
-          });
-      }
-  }
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                this.latitude = position.coords.latitude;
+                this.longitude = position.coords.longitude;
+                this.zoom = 14;
+            });
+        }
+    } 
 }

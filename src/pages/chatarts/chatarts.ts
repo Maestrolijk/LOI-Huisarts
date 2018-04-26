@@ -17,6 +17,7 @@ import { Storage } from '@ionic/storage';
 })
 export class ChatartsPage {
 
+  // set variables
   mychatphoto: any;
   key: any;
   myphotostorage: any;
@@ -25,12 +26,13 @@ export class ChatartsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, public storage: Storage) {
   }
   
-
+  // load the profile picture when the page loads
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChatartsPage');
     this.loadDataPhoto();
   }
 
+  // take a picture
   takePhoto() {
     const options: CameraOptions = {
       quality: 70,
@@ -40,14 +42,16 @@ export class ChatartsPage {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-    // imageData is either a base64 encoded string or a file URI
-    // If it's base64:
-    this.mychatphoto = 'data:image/jpeg;base64,' + imageData;
-   }, (err) => {
-    // Handle error
-   });
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      this.mychatphoto = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+    });
   }
 
+  // function to get the user picture from the local storage
+  // when no picture is found, use the standard avatar
   loadDataPhoto() {
     this.storage.get(this.myphotostorage).then(val => {
       if(val != null) {
