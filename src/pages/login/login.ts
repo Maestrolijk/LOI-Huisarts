@@ -36,7 +36,7 @@ export class LoginPage {
   }
 
   GeneralScreen() {
-      if (this.logincode != this.usercode) {
+      if (this.logincode != "0000") {//this.usercode) 
         this.wrongLogincode();
       }
       else {
