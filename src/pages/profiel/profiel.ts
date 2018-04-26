@@ -23,10 +23,10 @@ export class ProfielPage {
   myphotostorage: any;
   username: string;
   mailaddress: string;
-  usercode: string;
+  usercode: any;
   keyusername: string = 'username';
   keymailaddress: string = 'mailaddress'
-  keyusercode: string = 'usercode';
+  keyusercode: any = 'usercode';
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public storage: Storage) {
     storage.ready().then(() => {
@@ -44,7 +44,7 @@ export class ProfielPage {
 
   takePhoto() {
     const options: CameraOptions = {
-      quality: 70,
+      quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,

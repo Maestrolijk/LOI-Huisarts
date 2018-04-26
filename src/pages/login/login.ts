@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { SpoedPage } from '../spoed/spoed';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the LoginPage page.
@@ -19,8 +20,15 @@ import { SpoedPage } from '../spoed/spoed';
 export class LoginPage {
 
   logincode: any;
+  usercode; any;
+  keyusercode: any;
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage) {
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad LoginPage');
+    this.loadDataUsercode();
   }
 
   Spoed() {
@@ -28,7 +36,7 @@ export class LoginPage {
   }
 
   GeneralScreen() {
-      if (this.logincode != '0000') {
+      if (this.logincode != this.usercode) {
         this.wrongLogincode();
       }
       else {
@@ -53,6 +61,18 @@ export class LoginPage {
     });
     alert.present();
   }
+
+  loadDataUsercode() {
+    this.storage.get(this.keyusercode).then(val => {
+      if(val != null) {
+        this.usercode = val;
+      }
+      else {
+        this.usercode = "0000";
+      }}, err=> {
+        console.log("fout")
+      })
+    }
 }
 
 
