@@ -21,7 +21,9 @@ export class LoginPage {
 
   logincode: any;
   usercode; any;
-  keyusercode: any;
+  mailaddress: string;
+  keyusercode: any = 'usercode';
+  keymailaddress: string = 'mailaddress'
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage) {
   }
@@ -29,6 +31,7 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
     this.loadDataUsercode();
+    this.loadDataEmail();
   }
 
   Spoed() {
@@ -36,7 +39,7 @@ export class LoginPage {
   }
 
   GeneralScreen() {
-      if (this.logincode != "0000") {//this.usercode) 
+      if (this.logincode != this.usercode) {
         this.wrongLogincode();
       }
       else {
@@ -72,6 +75,12 @@ export class LoginPage {
       }}, err=> {
         console.log("fout")
       })
+    }
+
+    loadDataEmail() {
+      this.storage.get(this.keymailaddress).then((val) => {
+        this.mailaddress = val;
+      });
     }
 }
 
