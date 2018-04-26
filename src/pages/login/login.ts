@@ -32,7 +32,6 @@ export class LoginPage {
         this.wrongLogincode();
       }
       else {
-        console.log(this.logincode);
         this.navCtrl.push(TabsPage); 
       }
     }    

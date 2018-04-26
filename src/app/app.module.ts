@@ -8,7 +8,7 @@ import { DataProvider } from '../providers/data/data';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AgmCoreModule } from '@agm/core';
-import { Camera, CameraOptions} from '@ionic-native/Camera';
+import { Camera } from '@ionic-native/Camera';
 import { IonicStorageModule } from '@ionic/storage';
 import { RestProvider } from '../providers/rest/rest';
 

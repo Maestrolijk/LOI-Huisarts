@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Camera, CameraOptions} from '@ionic-native/Camera';
+import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 
@@ -19,6 +20,7 @@ import { Storage } from '@ionic/storage';
 export class ProfielPage {
 
   myphoto: any;
+  myphotostorage: any;
   username: string;
   mailaddress: string;
   usercode: string;
@@ -26,7 +28,7 @@ export class ProfielPage {
   keymailaddress: string = 'mailaddress'
   keyusercode: string = 'usercode';
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private camera: Camera, public storage: Storage) {
     storage.ready().then(() => {
   
     });
@@ -34,7 +36,10 @@ export class ProfielPage {
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfielPage');
-    this.showPicture();
+    this.loadDataPhoto();
+    this.loadDataUsername();
+    this.loadDataEmail();
+    this.loadDataUsercode();
   }
 
   takePhoto() {
@@ -52,6 +57,7 @@ export class ProfielPage {
     // imageData is either a base64 encoded string or a file URI
     // If it's base64:
     this.myphoto = 'data:image/jpeg;base64,' + imageData;
+    this.storage.set(this.myphotostorage, this.myphoto);
    }, (err) => {
     // Handle error
    });
@@ -61,17 +67,49 @@ export class ProfielPage {
     this.storage.set(this.keyusername, this.username);
     this.storage.set(this.keymailaddress, this.mailaddress);
     this.storage.set(this.keyusercode, this.usercode);
+    this.dataSaved();
+  }
+
+  loadDataPhoto() {
+    this.storage.get(this.myphotostorage).then(val => {
+      if(val != null) {
+        this.myphoto = val;
+      }
+      else {
+        this.myphoto = "assets/imgs/useravatar.png";
+      }}, err=> {
+        console.log("fout")
+      })
   }
 
   loadDataUsername() {
     this.storage.get(this.keyusername).then((val) => {
-      console.log('Your username is', val);
-
       this.username = val;
+    });
+  }
+
+  loadDataEmail() {
+    this.storage.get(this.keymailaddress).then((val) => {
+      this.mailaddress = val;
+    });
+  }
+
+  loadDataUsercode() {
+    this.storage.get(this.keyusercode).then((val) => {
+      this.usercode = val;
     });
   }
 
   showPicture() {
     this.myphoto = "assets/imgs/useravatar.png";
+  }
+
+  dataSaved() {
+    let alert = this.alertCtrl.create({
+      title: 'Bedankt!',
+      subTitle: 'Uw profieldata is opgeslagen.',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

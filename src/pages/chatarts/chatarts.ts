@@ -19,6 +19,8 @@ export class ChatartsPage {
 
   mychatphoto: any;
   key: any;
+  myphotostorage: any;
+  myphoto: any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, public storage: Storage) {
   }
@@ -26,6 +28,7 @@ export class ChatartsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChatartsPage');
+    this.loadDataPhoto();
   }
 
   takePhoto() {
@@ -43,5 +46,17 @@ export class ChatartsPage {
    }, (err) => {
     // Handle error
    });
+  }
+
+  loadDataPhoto() {
+    this.storage.get(this.myphotostorage).then(val => {
+      if(val != null) {
+        this.myphoto = val;
+      }
+      else {
+        this.myphoto = "assets/imgs/useravatar.png";
+      }}, err=> {
+        console.log("fout")
+      })
   }
 }
