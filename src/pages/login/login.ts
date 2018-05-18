@@ -4,6 +4,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { SpoedPage } from '../spoed/spoed';
 import { Storage } from '@ionic/storage';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Http } from '@angular/http';
 
 /**
  * Generated class for the LoginPage page.
@@ -24,9 +26,19 @@ export class LoginPage {
   usercode; any;
   mailaddress: string;
   keyusercode: any = 'usercode';
-  keymailaddress: string = 'mailaddress'
+  keymailaddress: string = 'mailaddress';
+
+  http: HttpClient;
+  mailgunUrl: string;
+  mailgunApiKey: string;
+  recipient: string;
+  subject: string;
+  message: string;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, http: HttpClient) {
+    this.http = http;
+    this.mailgunUrl = "sandboxda4247e765ae41e0acd0b44951229622.mailgun.org";
+    this.mailgunApiKey = window.btoa("api:key-2255d4aa7f07f0fb8aee1c5b1913a240");
   }
 
   // load the logincode and the email
@@ -52,7 +64,7 @@ export class LoginPage {
   }    
 
   // alert for sending email
-  fForgotPassword() {
+  fForgotPasswordoud() {
     let alert = this.alertCtrl.create({
       title: 'Let op:',
       subTitle: 'Er is een email gestuurd met de juiste code',
@@ -90,6 +102,19 @@ export class LoginPage {
     this.storage.get(this.keymailaddress).then((val) => {
       this.mailaddress = val;
     });
+  }
+
+  fForgotPassword() {
+    
+    // to test this on localhost install CORS extention for Google Chrome
+    this.http.post("https://api.mailgun.net/v3/" + this.mailgunUrl + "/messages", "from=Huisartsen 2022 <huisartsenapp2022@loi.nl>&to=" + this.mailaddress + "&subject=Uw logincode&text=Uw logincode is " + this.usercode,
+      {
+        headers: { 'Authorization': 'Basic ' + this.mailgunApiKey, "Content-Type": "application/x-www-form-urlencoded" },
+      }).subscribe(success => {
+        console.log("SUCCESS -> " + JSON.stringify(success));
+      }, error => {
+        console.log("ERROR -> " + JSON.stringify(error));
+      });
   }
 }
 
