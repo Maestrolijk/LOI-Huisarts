@@ -37,8 +37,8 @@ export class LoginPage {
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, http: HttpClient) {
     this.http = http;
-    this.mailgunUrl = "sandboxda4247e765ae41e0acd0b44951229622.mailgun.org";
-    this.mailgunApiKey = window.btoa("api:key-2255d4aa7f07f0fb8aee1c5b1913a240");
+    this.mailgunUrl = "sandboxb9edd659fd6d40f5a3bc8fe6d880b57d.mailgun.org";
+    this.mailgunApiKey = window.btoa("api:key-981e87d856d2ca0567b133043ff8dba1");
   }
 
   // load the logincode and the email
@@ -62,16 +62,6 @@ export class LoginPage {
         this.navCtrl.push(TabsPage); 
       }
   }    
-
-  // alert for sending email
-  fForgotPasswordoud() {
-    let alert = this.alertCtrl.create({
-      title: 'Let op:',
-      subTitle: 'Er is een email gestuurd met de juiste code',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
 
   // alert for entering wrong password
   wrongLogincode() {
@@ -115,6 +105,14 @@ export class LoginPage {
       }, error => {
         console.log("ERROR -> " + JSON.stringify(error));
       });
+
+      // send and alert that email is sent
+      let alert = this.alertCtrl.create({
+        title: 'Let op:',
+        subTitle: 'Er is een email gestuurd met de juiste code',
+        buttons: ['OK']
+      });
+      alert.present();
   }
 }
 
