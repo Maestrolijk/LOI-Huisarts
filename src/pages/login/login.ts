@@ -102,17 +102,21 @@ export class LoginPage {
         headers: { 'Authorization': 'Basic ' + this.mailgunApiKey, "Content-Type": "application/x-www-form-urlencoded" },
       }).subscribe(success => {
         console.log("SUCCESS -> " + JSON.stringify(success));
+        let alert = this.alertCtrl.create({
+          title: 'Let op:',
+          subTitle: 'Er is een email gestuurd met de juiste code',
+          buttons: ['OK']
+        });
+        alert.present();
       }, error => {
         console.log("ERROR -> " + JSON.stringify(error));
+        let alert = this.alertCtrl.create({
+          title: 'Let op:',
+          subTitle: 'Er is iets mis gegaan',
+          buttons: ['OK']
+        });
+        alert.present();
       });
-
-      // send and alert that email is sent
-      let alert = this.alertCtrl.create({
-        title: 'Let op:',
-        subTitle: 'Er is een email gestuurd met de juiste code',
-        buttons: ['OK']
-      });
-      alert.present();
   }
 }
 
